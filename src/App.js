@@ -2,21 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const zpaJS = window.ZaloPay;
+  function handleReKYC() {
+    console.log(zpaJS.appInfo);
+    zpaJS.call("launchDeeplink", { url: "zalopay://launch/f/user-level-migration" }, (data) => {
+      console.log("data callback: ", JSON.stringify(data, null, 2));
+    });
+
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>  KYC Flow </p>
+        <button onClick={handleReKYC}>ReKYC</button>
       </header>
     </div>
   );
