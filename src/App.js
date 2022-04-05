@@ -7,7 +7,7 @@ function App() {
     console.log(zpaJS.appInfo);
     zpaJS.call("launchDeeplink", { url: "zalopay://launch/f/user-level-migration" }, (data) => {
       console.log("data callback: ", JSON.stringify(data, null, 2));
-      window.location.href = "https://socialdev.zalopay.vn/spa/v2/quick-pay";
+      //window.location.href = "https://socialdev.zalopay.vn/spa/v2/quick-pay";
     });
 
   }
