@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import {useNavigate} from 'react-router-dom'
 
 function App() {
 
@@ -17,12 +16,13 @@ function App() {
 
     function handlePaymentFlow() {
         // eslint-disable-next-line no-unused-expressions
-        const search = this.props.location.search;
+        const search = window.location.search;
         const orderUrl = new URLSearchParams(search).get("orderUrl");
+        console.log(orderUrl)
         if (orderUrl !== '') {
             console.log("redirect to ", orderUrl)
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            useNavigate(orderUrl)
+            window.location.href = orderUrl
         }
     }
 
