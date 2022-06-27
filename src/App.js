@@ -1,11 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from "react";
-
+import { useEffect } from "react";
+import queryString from 'query-string';
 
 function App() {
+    useEffect(()=>{
+        const search = window.location.search;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+       // url = new URLSearchParams(search).get("orderUrl");
+        let orderUrl =  queryString.parseUrl(search);
+        console.log("orderURL: ", orderUrl);
+        if (orderUrl.query.orderUrl?.toString()) {
+            window.location.href = orderUrl.query.orderUrl?.toString();
+        }
+    }, [])
 
-    const [url, setUrl] = useState('');
+
     // const zpaJS = window.ZaloPay;
 
     // function handleReKYC() {
@@ -17,28 +27,28 @@ function App() {
     //
     // }
 
-    function handlePaymentFlow() {
-        let orderUrl = ''
-        if (url === '') {
-            // eslint-disable-next-line no-unused-expressions
-            const search = window.location.search;
-            orderUrl = new URLSearchParams(search).get("orderUrl");
-        } else {
-            orderUrl = url
-        }
+    // function handlePaymentFlow() {
+    //     let orderUrl = ''
+    //     if (url === '') {
+    //         // eslint-disable-next-line no-unused-expressions
+    //         const search = window.location.search;
+    //         orderUrl = new URLSearchParams(search).get("orderUrl");
+    //     } else {
+    //         orderUrl = url
+    //     }
+    //
+    //     console.log("ORDER URL: ", orderUrl)
+    //     if (orderUrl !== '') {
+    //         console.log("redirect to ", orderUrl)
+    //         // eslint-disable-next-line react-hooks/rules-of-hooks
+    //         window.location.href = orderUrl
+    //     }
+    // }
 
-        console.log("ORDER URL: ", orderUrl)
-        if (orderUrl !== '') {
-            console.log("redirect to ", orderUrl)
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            window.location.href = orderUrl
-        }
-    }
-
-    function handleOnchange(data) {
-        console.log("input data: ", data.target.value)
-        setUrl(data.target.value)
-    }
+    // function handleOnchange(data) {
+    //     console.log("input data: ", data.target.value)
+    //     setUrl(data.target.value)
+    // }
 
     return (
         <div className="App">
@@ -51,8 +61,8 @@ function App() {
                 <img src={logo} className="App-logo" alt="logo"/>
                 <p> PAYMENT FLOW DEMO </p>
                 {/* eslint-disable-next-line react/jsx-no-undef */}
-                <input type="text" onChange={(data) => handleOnchange(data)}/>
-                <button onClick={handlePaymentFlow}>PAY NOW</button>
+                {/*<input type="text" onChange={(data) => handleOnchange(data)}/>*/}
+                {/*<button onClick={handlePaymentFlow}>PAY NOW</button>*/}
             </header>
         </div>
     );
